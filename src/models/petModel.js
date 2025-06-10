@@ -1,7 +1,6 @@
 const db = require('../config/database');
 
 class PetModel {
-
     static async create(pet) {
         const { name, age, species, size, status, description } = pet;
         const [result] = await db.query(
@@ -11,6 +10,9 @@ class PetModel {
         return result.insertId;
     }
 
+    static async getAvailablePets() {
+        return await db.query("SELECT * FROM pets WHERE status = 'available';");
+    }
 }
 
 module.exports = PetModel;

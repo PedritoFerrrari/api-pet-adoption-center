@@ -12,7 +12,6 @@ API RESTful para gerenciar um sistema de adoção de pets, com autenticação de
 - JWT
 - BcryptJS
 - Dotenv
-- Helmet & CORS
 - ESLint + Prettier
 
 
@@ -23,8 +22,7 @@ API RESTful para gerenciar um sistema de adoção de pets, com autenticação de
 ```bash
 git clone https://github.com/PedritoFerrrari/api-pet-adoption-center.git
 cd api-pet-adoption-center
-npm install express mysql2 jsonwebtoken bcryptjs dotenv cors helmet
-npm install --save-dev nodemon eslint prettier @eslint/js eslint-plugin-prettier eslint-config-prettier globals
+npm install
 ```
 
 ### Configure as variaveis de ambiente

@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const UserModel = require("../models/userModel");
+const UserModel = require('../models/userModel');
 
 class UserService {
     static async registerUser(user) {
@@ -19,7 +19,6 @@ class UserService {
     }
 
     static async loginUser({ email, password }) {
-
         const user = await UserModel.findByEmail(email);
         if (!user) {
             throw new Error('Usuário não encontrado');
