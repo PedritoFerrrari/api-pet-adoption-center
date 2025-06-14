@@ -16,6 +16,27 @@ class UserModel {
         );
         return result.insertId;
     }
+
+    static async update(id, { name, email, password, phone, role }) {
+        await db.query(
+            `UPDATE users SET name = ?, email = ?, password = ?, phone = ?, role = ? WHERE id = ?`,
+            [name, email, password, phone, role, id]
+        );
+    }
+
+    static async getAllUsers() {
+        const [users] = await db.query('SELECT * FROM users');
+        return users;
+    }
+
+    static async findById(id) {
+        const [rows] = await db.query('SELECT * FROM users WHERE id = ?', [id]);
+        return rows[0];
+    }
+
+    static async delete(id) {
+        await db.query('DELETE FROM users WHERE id = ?', [id]);
+    }
 }
 
 module.exports = UserModel;

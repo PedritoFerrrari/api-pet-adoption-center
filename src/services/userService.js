@@ -37,6 +37,30 @@ class UserService {
 
         return { token };
     }
+
+    static async getAllUsers() {
+        return await UserModel.getAllUsers();
+    }
+
+    static async getUserById(id) {
+        const user = await UserModel.findById(id);
+        if (!user) throw new Error('Usuário não encontrado');
+        return user;
+    }
+
+    static async updateUser(id, data) {
+        const existingUser = await UserModel.findById(id);
+        if (!existingUser) {
+            throw new Error('Usuário não encontrado');
+        }
+        await UserModel.update(id, data);
+    }
+
+    static async deleteUser(id) {
+        const user = await UserModel.findById(id);
+        if (!user) throw new Error('Usuário não encontrado');
+        await UserModel.delete(id);
+    }
 }
 
 module.exports = UserService;

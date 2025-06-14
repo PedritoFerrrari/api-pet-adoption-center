@@ -13,19 +13,13 @@ router.get(
     '/user',
     authenticateToken,
     authorizeRole('admin'),
-    ProtectedController.getUsers
+    ProtectedController.getAllUsers
 );
 router.get(
     '/users/:id',
     authenticateToken,
     authorizeRole('admin'),
     ProtectedController.getUserById
-);
-router.post(
-    '/users/',
-    authenticateToken,
-    authorizeRole('admin'),
-    ProtectedController.createUser
 );
 router.put(
     '/users/:id',
@@ -41,12 +35,6 @@ router.delete(
 );
 
 //Pets routes
-router.get(
-    '/pets',
-    authenticateToken,
-    authorizeRole('admin'),
-    ProtectedController.getPets
-);
 router.get(
     '/pets/:id',
     authenticateToken,
@@ -77,7 +65,7 @@ router.get(
     '/adoptions',
     authenticateToken,
     authorizeRole('admin'),
-    ProtectedController.getAdoptions
+    ProtectedController.getAllAdoptions
 );
 router.post(
     '/adoptions',

@@ -1,6 +1,6 @@
 const db = require('../config/database');
-
 class AdoptionModel {
+
     static async create(adoption) {
         const { user_id, pet_id, adoption_date } = adoption;
         const [result] = await db.query(
@@ -9,6 +9,12 @@ class AdoptionModel {
         );
         return result.insertId;
     }
+
+    static async getAll() {
+        const [rows] = await db.query('SELECT * FROM adoptions');
+        return rows;
+    }
+
 }
 
 module.exports = AdoptionModel;
