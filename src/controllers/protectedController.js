@@ -1,6 +1,8 @@
 const AdoptionService = require("../services/adoptionsService");
 const petsService = require("../services/petsService");
 const UserService = require("../services/userService");
+const ValidationUtils = require('../utils/validateFields');
+
 
 class ProtectedController {
 

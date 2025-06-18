@@ -1,0 +1,10 @@
+@baseURL = http://localhost:3000
+
+POST {{baseURL}}/public/users
+Content-Type: application/json
+
+{
+    "email": "novo@ifrs.edu.br",
+    "password": "senha123",
+    "role": "user"
+}

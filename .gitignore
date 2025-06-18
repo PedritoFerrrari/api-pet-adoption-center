@@ -9,3 +9,5 @@ Thumbs.db
 # Build / dist (caso adicione futuramente)
 dist/
 build/
+# Configs
+.vscode/

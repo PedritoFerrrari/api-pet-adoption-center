@@ -11,7 +11,7 @@ router.get(
     authenticateToken,
     PublicController.availablePets
 );
-router.post('/users', authenticateToken, AuthController.register);
-router.post('/login', authenticateToken, AuthController.login);
+router.post('/users', AuthController.register);
+router.post('/login', AuthController.login);
 
 module.exports = router;
