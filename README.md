@@ -15,7 +15,7 @@ API RESTful para gerenciar um sistema de adoção de pets, com autenticação de
 - ESLint + Prettier
 
 
-## 🛠️ Como instalar o projeto na sua máquina
+## Como instalar o projeto na sua máquina
 
 ### Clone o repositório
 
@@ -39,3 +39,37 @@ Após isso, altere os valores para que eles reflitam seu ambiente de desenvolvim
 ```bash
 npm run dev
 ```
+
+
+## Documentação das Rotas
+
+### Rotas Públicas
+| Método | Endpoint          |
+|--------|-------------------|
+| `GET`  | `/pets/available` |
+| `POST` | `/users`          |
+| `POST` | `/login`          |
+
+
+### Rotas Protegidas
+#### - Usuários
+| Método   | Endpoint               | Acesso                  |
+|----------|------------------------|--------------------------|
+| `GET`    | `/protected/users`     | `admin`                  |
+| `GET`    | `/protected/users/:id` | `admin`, `adopter (dono)`|
+| `PUT`    | `/protected/users/:id` | `admin`, `adopter (dono)`|
+| `DELETE` | `/protected/users/:id` | `admin`                  |
+
+#### - Pets
+| Método   | Endpoint               | Acesso  |
+|----------|------------------------|---------|
+| `GET`    | `/protected/pets/:id`  | `admin` |
+| `POST`   | `/protected/pets/`     | `admin` |
+| `PUT`    | `/protected/pets/:id`  | `admin` |
+| `DELETE` | `/protected/pets/:id`  | `admin` |
+
+#### - Adoções
+| Método | Endpoint               | Acesso    |
+|--------|------------------------|-----------|
+| `GET`  | `/protected/adoptions` | `admin`   |
+| `POST` | `/protected/adoptions` | `adopter` |
