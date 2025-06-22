@@ -1,0 +1,53 @@
+@baseURL = http://localhost:3000
+@jwtToken = "INSIRASEUTOKENAQUI"
+
+
+### Cadastro de novo usuário
+POST {{baseURL}}/public/users
+Content-Type: application/json
+
+{
+    "name": "João",
+    "email": "joao@email.com",
+    "password": "123456",
+    "phone": "99548095",
+    "role": "admin"
+}
+
+### Login de usuário
+POST {{baseURL}}/public/login
+Content-Type: application/json
+
+{
+    "email": "joao@email.com",
+    "password": "123456"
+}
+
+### Pegar todos os pets disponível
+GET {{baseURL}}/public/pets/available
+
+### Pegar todos os usuários
+GET {{baseURL}}/protected/users
+Authorization: Bearer {{Cole seu token}}
+
+### Pegar usuário por ID
+GET {{baseURL}}/protected/users/1
+Authorization: Bearer {{Cole seu token}}
+
+### Atualizar usuário
+PUT {{baseURL}}/protected/users/1
+Authorization: Bearer {{Cole seu token}}
+Content-Type: application/json
+
+{
+    "name": "João",
+    "email": "joao@email.com",
+    "password": "123456",
+    "phone": "99548095"
+}
+
+### Pegar usuário por ID
+DELETE {{baseURL}}/protected/users/17
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvQGVtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MDYxNzgwMCwiZXhwIjoxNzUwNjIxNDAwfQ.ddqvzU3c4clyIgN70gGd_13pyv8wOk1Cpb1Ay1TZuh0
+
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvQGVtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MDYxNzgwMCwiZXhwIjoxNzUwNjIxNDAwfQ.ddqvzU3c4clyIgN70gGd_13pyv8wOk1Cpb1Ay1TZuh0

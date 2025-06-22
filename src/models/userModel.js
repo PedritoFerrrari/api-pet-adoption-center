@@ -17,20 +17,20 @@ class UserModel {
         return result.insertId;
     }
 
-    static async update(id, { name, email, password, phone, role }) {
+    static async update(id, { name, email, password, phone }) {
         await db.query(
-            `UPDATE users SET name = ?, email = ?, password = ?, phone = ?, role = ? WHERE id = ?`,
-            [name, email, password, phone, role, id]
+            `UPDATE users SET name = ?, email = ?, password = ?, phone = ? WHERE id = ?`,
+            [name, email, password, phone, id]
         );
     }
 
     static async getAllUsers() {
-        const [users] = await db.query('SELECT * FROM users');
+        const [users] = await db.query('SELECT name, email, phone, role FROM users');
         return users;
     }
 
     static async findById(id) {
-        const [rows] = await db.query('SELECT * FROM users WHERE id = ?', [id]);
+        const [rows] = await db.query('SELECT name, email, phone, role FROM users WHERE id = ?', [id]);
         return rows[0];
     }
 

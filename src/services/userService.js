@@ -30,7 +30,7 @@ class UserService {
         }
 
         const token = jwt.sign(
-            { email: user.email, role: user.role },
+            { id: user.id, email: user.email, role: user.role },
             process.env.JWT_SECRET,
             { expiresIn: '1h' }
         );

@@ -14,11 +14,25 @@ function authenticateToken(req, res, next) {
 
 function authorizeRole(role) {
     return (req, res, next) => {
-        if (req.user.role !== role) {
+        if (!role.includes(req.user.role)) {
             return res.status(403).json({ message: 'Acesso negado' });
         }
         next();
     };
 }
 
-module.exports = { authenticateToken, authorizeRole };
+function authorizeByOwnerId() {
+    return (req, res, next) => {
+        if (
+            req.user.id == req.params.id
+            || req.user.role == 'admin'
+        ) {
+            next();
+        } else {
+
+            return res.status(403).json({ message: "Acesso negado" });
+        }
+    };
+}
+
+module.exports = { authenticateToken, authorizeRole, authorizeByOwnerId };

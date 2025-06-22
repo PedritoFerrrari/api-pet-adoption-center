@@ -6,31 +6,34 @@ const ProtectedController = require('../controllers/protectedController');
 const {
     authenticateToken,
     authorizeRole,
+    authorizeByOwnerId,
 } = require('../middlewares/authMiddleware');
 
 //User routes
 router.get(
-    '/user',
+    '/users',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin']),
     ProtectedController.getAllUsers
 );
 router.get(
     '/users/:id',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin', 'adopter']),
+    authorizeByOwnerId(),
     ProtectedController.getUserById
 );
 router.put(
     '/users/:id',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin', 'adopter']),
+    authorizeByOwnerId(),
     ProtectedController.updateUser
 );
 router.delete(
     '/users/:id',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin']),
     ProtectedController.deleteUser
 );
 
@@ -38,39 +41,39 @@ router.delete(
 router.get(
     '/pets/:id',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin']),
     ProtectedController.getPetById
 );
 router.post(
     '/pets/',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin']),
     ProtectedController.createPet
 );
 router.put(
     '/pets/:id',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin']),
     ProtectedController.updatePet
 );
 router.delete(
     '/pets/:id',
     authenticateToken,
-    authorizeRole('admin'),
-    ProtectedController.deleteUser
+    authorizeRole(['admin']),
+    ProtectedController.deletePet
 );
 
 //Adoption routes
 router.get(
     '/adoptions',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['admin']),
     ProtectedController.getAllAdoptions
 );
 router.post(
     '/adoptions',
     authenticateToken,
-    authorizeRole('admin'),
+    authorizeRole(['adopter']),
     ProtectedController.createAdoption
 );
 

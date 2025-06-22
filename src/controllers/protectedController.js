@@ -2,6 +2,7 @@ const AdoptionService = require("../services/adoptionsService");
 const petsService = require("../services/petsService");
 const UserService = require("../services/userService");
 
+const { validateFields } = require('../utils/validateFields');
 
 class ProtectedController {
 
@@ -27,8 +28,9 @@ class ProtectedController {
     static async updateUser(req, res) {
         try {
             const { id } = req.params;
-            const { name, email, password, phone, role } = req.body;
-            await UserService.updateUser(id, { name, email, password, phone, role });
+            validateFields(req.body, ['name', 'email', 'password', 'phone'])
+            const { name, email, password, phone } = req.body;
+            await UserService.updateUser(id, { name, email, password, phone});
             return res.status(200).json({ message: 'Usuário atualizado com sucesso' });
         } catch (error) {
             return res.status(400).json({ message: error.message });
@@ -39,7 +41,7 @@ class ProtectedController {
         try {
             const { id } = req.params;
             await UserService.deleteUser(id);
-            return res.status(204).send();
+            return res.status(200).json({ message: 'Usuário deletado com sucesso' });
         } catch (error) {
             return res.status(400).json({ message: error.message });
         }
