@@ -1,10 +1,31 @@
 @baseURL = http://localhost:3000
+@jwtToken = "INSIRASEUTOKENAQUI"
 
+
+### Cadastro de novo usuário
 POST {{baseURL}}/public/users
 Content-Type: application/json
 
 {
-    "email": "novo@ifrs.edu.br",
-    "password": "senha123",
-    "role": "user"
+    "name": "João",
+    "email": "joao@email.com",
+    "password": "123456",
+    "phone": "99548095",
+    "role": "admin"
 }
+
+### Login de usuário
+POST {{baseURL}}/public/login
+Content-Type: application/json
+
+{
+    "email": "joao@email.com",
+    "password": "123456"
+}
+
+### Pegar todos os pets disponível
+GET {{baseURL}}/public/pets/available
+
+
+//para rotas privadas
+Authorization: Bearer batatinha123
