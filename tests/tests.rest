@@ -1,5 +1,5 @@
 @baseURL = http://localhost:3000
-@jwtToken = "INSIRASEUTOKENAQUI"
+@jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTgsImVtYWlsIjoiam9hbzEyQGVtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MDcyMTY1OSwiZXhwIjoxNzUwNzI1MjU5fQ.JumL9VIDXvRR8mBOvWjIms5KPKfZWN6mmh25TGHhuRc"
 
 
 ### Cadastro de novo usuário
@@ -8,7 +8,7 @@ Content-Type: application/json
 
 {
     "name": "João",
-    "email": "joao@email.com",
+    "email": "joao12@email.com",
     "password": "123456",
     "phone": "99548095",
     "role": "admin"
@@ -19,7 +19,7 @@ POST {{baseURL}}/public/login
 Content-Type: application/json
 
 {
-    "email": "joao@email.com",
+    "email": "joao12@email.com",
     "password": "123456"
 }
 
@@ -28,15 +28,15 @@ GET {{baseURL}}/public/pets/available
 
 ### Pegar todos os usuários
 GET {{baseURL}}/protected/users
-Authorization: Bearer {{Cole seu token}}
+Authorization: Bearer {{jwtToken}}
 
 ### Pegar usuário por ID
 GET {{baseURL}}/protected/users/1
-Authorization: Bearer {{Cole seu token}}
+Authorization: Bearer {{jwtToken}}
 
 ### Atualizar usuário
 PUT {{baseURL}}/protected/users/1
-Authorization: Bearer {{Cole seu token}}
+Authorization: Bearer {{jwtToken}}
 Content-Type: application/json
 
 {
@@ -46,8 +46,42 @@ Content-Type: application/json
     "phone": "99548095"
 }
 
-### Pegar usuário por ID
+### Deletar usuário por ID
 DELETE {{baseURL}}/protected/users/17
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvQGVtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MDYxNzgwMCwiZXhwIjoxNzUwNjIxNDAwfQ.ddqvzU3c4clyIgN70gGd_13pyv8wOk1Cpb1Ay1TZuh0
 
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2FvQGVtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1MDYxNzgwMCwiZXhwIjoxNzUwNjIxNDAwfQ.ddqvzU3c4clyIgN70gGd_13pyv8wOk1Cpb1Ay1TZuh0
+
+### Buscar pet por ID
+GET {{baseURL}}/protected/pets/1
+Authorization: Bearer {{jwtToken}}
+
+### Cadastrar novo pet
+POST {{baseURL}}/protected/pets
+Authorization: Bearer {{jwtToken}}
+Content-Type: application/json
+
+{
+    "name": "Luna",
+    "age": 2,
+    "species": "dog",
+    "size": "medium",
+    "status": "",
+    "description": "Friendly and playful golden retriever"
+}
+
+### Atualizar pet
+PUT {{baseURL}}/protected/pets/1
+Authorization: Bearer {{jwtToken}}
+Content-Type: application/json
+
+{
+    "name": "Luna",
+    "age": 3,
+    "species": "dog",
+    "size": "medium",
+    "status": "adopted",
+    "description": "Recently adopted golden retriever"
+}
+
+### Deletar pet por ID
+DELETE {{baseURL}}/protected/pets/1
+Authorization: Bearer {{jwtToken}}

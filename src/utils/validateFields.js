@@ -38,10 +38,15 @@ function validateFields(data, expectedFields) {
             );
         }
 
-        if (field === 'status' && !['available', 'adopted'].includes(value)) {
-            throw new Error(
-                `O campo 'status' só pode ter valores de available ou adopted`
-            );
+        if (field === 'role') {
+            if (value === '') {
+                value = 'available';
+            }
+            if (field === 'status' && !['available', 'adopted'].includes(value)) {
+                throw new Error(
+                    `O campo 'status' só pode ter valores de available ou adopted`
+                );
+            }
         }
 
         if (field === 'adoption_date' && !validarData(value)) {
