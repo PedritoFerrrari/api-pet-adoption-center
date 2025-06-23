@@ -8,11 +8,13 @@ function validarData(data) {
     const [ano, mes, dia] = data.split('-');
     const dataValida = new Date(ano, mes - 1, dia);
 
-    return dataValida.getFullYear() === parseInt(ano) &&
+    return (
+        dataValida.getFullYear() === parseInt(ano) &&
         dataValida.getMonth() === parseInt(mes) - 1 &&
-        dataValida.getDate() === parseInt(dia);
+        dataValida.getDate() === parseInt(dia)
+    );
 }
 
 module.exports = {
-    validarData
+    validarData,
 };

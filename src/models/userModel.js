@@ -25,12 +25,17 @@ class UserModel {
     }
 
     static async getAllUsers() {
-        const [users] = await db.query('SELECT name, email, phone, role FROM users');
+        const [users] = await db.query(
+            'SELECT name, email, phone, role FROM users'
+        );
         return users;
     }
 
     static async findById(id) {
-        const [rows] = await db.query('SELECT name, email, phone, role FROM users WHERE id = ?', [id]);
+        const [rows] = await db.query(
+            'SELECT name, email, phone, role FROM users WHERE id = ?',
+            [id]
+        );
         return rows[0];
     }
 

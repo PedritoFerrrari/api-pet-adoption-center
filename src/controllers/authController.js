@@ -3,7 +3,13 @@ const { validateFields } = require('../utils/validateFields');
 class AuthController {
     static async register(req, res) {
         try {
-            validateFields(req.body, ['name', 'email', 'password', 'phone', 'role'])
+            validateFields(req.body, [
+                'name',
+                'email',
+                'password',
+                'phone',
+                'role',
+            ]);
             const result = await UserService.registerUser(req.body);
             return res.status(201).json(result);
         } catch (error) {
@@ -13,7 +19,7 @@ class AuthController {
 
     static async login(req, res) {
         try {
-            validateFields(req.body, ['email', 'password'])
+            validateFields(req.body, ['email', 'password']);
             const result = await UserService.loginUser(req.body);
             return res.status(200).json(result);
         } catch (error) {

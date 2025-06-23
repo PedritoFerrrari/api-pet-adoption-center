@@ -1,11 +1,10 @@
-const AdoptionService = require("../services/adoptionsService");
-const petsService = require("../services/petsService");
-const UserService = require("../services/userService");
+const AdoptionService = require('../services/adoptionsService');
+const petsService = require('../services/petsService');
+const UserService = require('../services/userService');
 
 const { validateFields } = require('../utils/validateFields');
 
 class ProtectedController {
-
     static async getAllUsers(_, res) {
         try {
             const users = await UserService.getAllUsers();
@@ -28,10 +27,12 @@ class ProtectedController {
     static async updateUser(req, res) {
         try {
             const { id } = req.params;
-            validateFields(req.body, ['name', 'email', 'password', 'phone'])
+            validateFields(req.body, ['name', 'email', 'password', 'phone']);
             const { name, email, password, phone } = req.body;
-            await UserService.updateUser(id, { name, email, password, phone});
-            return res.status(200).json({ message: 'Usuário atualizado com sucesso' });
+            await UserService.updateUser(id, { name, email, password, phone });
+            return res
+                .status(200)
+                .json({ message: 'Usuário atualizado com sucesso' });
         } catch (error) {
             return res.status(400).json({ message: error.message });
         }
@@ -41,7 +42,9 @@ class ProtectedController {
         try {
             const { id } = req.params;
             await UserService.deleteUser(id);
-            return res.status(200).json({ message: 'Usuário deletado com sucesso' });
+            return res
+                .status(200)
+                .json({ message: 'Usuário deletado com sucesso' });
         } catch (error) {
             return res.status(400).json({ message: error.message });
         }
@@ -79,8 +82,17 @@ class ProtectedController {
         try {
             const { id } = req.params;
             const { name, age, species, size, status, description } = req.body;
-            await petsService.updatePet(id, { name, age, species, size, status, description });
-            return res.status(200).json({ message: 'Pet atualizado com sucesso' });
+            await petsService.updatePet(id, {
+                name,
+                age,
+                species,
+                size,
+                status,
+                description,
+            });
+            return res
+                .status(200)
+                .json({ message: 'Pet atualizado com sucesso' });
         } catch (error) {
             return res.status(400).json({ message: error.message });
         }
@@ -113,7 +125,6 @@ class ProtectedController {
             return res.status(400).json({ message: error.message });
         }
     }
-
 }
 
 module.exports = ProtectedController;

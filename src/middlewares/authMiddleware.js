@@ -23,14 +23,10 @@ function authorizeRole(role) {
 
 function authorizeByOwnerId() {
     return (req, res, next) => {
-        if (
-            req.user.id == req.params.id
-            || req.user.role == 'admin'
-        ) {
+        if (req.user.id == req.params.id || req.user.role == 'admin') {
             next();
         } else {
-
-            return res.status(403).json({ message: "Acesso negado" });
+            return res.status(403).json({ message: 'Acesso negado' });
         }
     };
 }

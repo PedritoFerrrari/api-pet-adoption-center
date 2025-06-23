@@ -1,7 +1,6 @@
 const db = require('../config/database');
 
 class PetModel {
-
     static async create(pet) {
         const { name, age, species, size, status, description } = pet;
         const [result] = await db.query(
@@ -12,8 +11,10 @@ class PetModel {
     }
 
     static async getAvailablePets() {
-        const [rows] = await db.query("SELECT * FROM pets WHERE status = 'available';");
-        return rows
+        const [rows] = await db.query(
+            "SELECT * FROM pets WHERE status = 'available';"
+        );
+        return rows;
     }
 
     static async getAllPets() {
@@ -36,7 +37,6 @@ class PetModel {
     static async delete(id) {
         await db.query('DELETE FROM pets WHERE id = ?', [id]);
     }
-
 }
 
 module.exports = PetModel;
