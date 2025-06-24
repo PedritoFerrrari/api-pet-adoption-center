@@ -7,11 +7,11 @@ class AdoptionService {
     }
 
     static async create(data) {
-        const { petId } = data;
-        const pet = await PetModel.findById(petId);
+        const { pet_id } = data;
+        const pet = await PetModel.findById(pet_id);
         if (!pet || pet.status !== 'available')
             throw new Error('Pet não disponível');
-        await PetModel.update(petId, { status: 'adopted' });
+        await PetModel.update(pet_id, { status: 'adopted' });
         return await AdoptionModel.create(data);
     }
 }

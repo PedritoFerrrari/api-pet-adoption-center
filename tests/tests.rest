@@ -20,13 +20,12 @@ POST {{baseURL}}/public/login
 Content-Type: application/json
 
 {
-    "email": "joao12@email.com",
+    "email": "joao132@email.com",
     "password": "123456"
 }
 
 ### Pegar todos os pets disponível
 GET {{baseURL}}/public/pets/available
-
 
 
 ##Rotas Protegidas##
@@ -90,3 +89,18 @@ Content-Type: application/json
 DELETE {{baseURL}}/protected/pets/1
 Authorization: Bearer {{jwtToken}}
 
+###Buscar adoções cadastradas
+GET {{baseURL}}/protected/adoptions
+Authorization: Bearer {{jwtToken}}
+
+
+###Cadastrar uma adoção
+POST {{baseURL}}/protected/adoptions
+Authorization: Bearer {{jwtToken}}
+Content-Type: application/json
+
+{
+    "user_id": "1",
+    "pet_id": "1",
+    "adoption_date": "2025-06-15"
+}

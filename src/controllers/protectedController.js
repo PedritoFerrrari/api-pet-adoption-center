@@ -132,6 +132,7 @@ class ProtectedController {
 
     static async createAdoption(req, res) {
         try {
+            validateFields(req.body, ['user_id', 'pet_id', 'adoption_date']);
             const id = await AdoptionService.create(req.body);
             return res
                 .status(201)

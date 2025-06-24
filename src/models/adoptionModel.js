@@ -3,7 +3,7 @@ class AdoptionModel {
     static async create(adoption) {
         const { user_id, pet_id, adoption_date } = adoption;
         const [result] = await db.query(
-            'INSERT INTO pets (name, age, species) VALUES (?, ?, ?)',
+            'INSERT INTO adoptions (user_id, pet_id, adoption_date) VALUES (?, ?, ?)',
             [user_id, pet_id, adoption_date]
         );
         return result.insertId;
