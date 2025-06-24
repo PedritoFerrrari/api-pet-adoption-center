@@ -38,11 +38,11 @@ function validateFields(data, expectedFields) {
             );
         }
 
-        if (field === 'role') {
+        if (field === 'status') {
             if (value === '') {
                 value = 'available';
             }
-            if (field === 'status' && !['available', 'adopted'].includes(value)) {
+            if (!['available', 'adopted'].includes(value)) {
                 throw new Error(
                     `O campo 'status' só pode ter valores de available ou adopted`
                 );

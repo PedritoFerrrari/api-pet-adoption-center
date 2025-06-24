@@ -71,8 +71,18 @@ class ProtectedController {
 
     static async createPet(req, res) {
         try {
+            validateFields(req.body, [
+                'name',
+                'age',
+                'species',
+                'size',
+                'status',
+                'description',
+            ]);
             const id = await petsService.createPet(req.body);
-            return res.status(201).json({ id });
+            return res
+                .status(200)
+                .json({ message: 'Pet criado com sucesso!', id: id });
         } catch (error) {
             return res.status(400).json({ message: error.message });
         }
@@ -81,15 +91,15 @@ class ProtectedController {
     static async updatePet(req, res) {
         try {
             const { id } = req.params;
-            const { name, age, species, size, status, description } = req.body;
-            await petsService.updatePet(id, {
-                name,
-                age,
-                species,
-                size,
-                status,
-                description,
-            });
+            validateFields(req.body, [
+                'name',
+                'age',
+                'species',
+                'size',
+                'status',
+                'description',
+            ]);
+            await petsService.updatePet(id, req.body);
             return res
                 .status(200)
                 .json({ message: 'Pet atualizado com sucesso' });
@@ -102,7 +112,10 @@ class ProtectedController {
         try {
             const { id } = req.params;
             await petsService.deletePet(id);
-            return res.status(204).send();
+            return res
+                .status(204)
+                .status(200)
+                .json({ message: 'Pet deletado com sucesso' });
         } catch (error) {
             return res.status(400).json({ message: error.message });
         }
@@ -120,7 +133,9 @@ class ProtectedController {
     static async createAdoption(req, res) {
         try {
             const id = await AdoptionService.create(req.body);
-            return res.status(201).json({ id });
+            return res
+                .status(201)
+                .json({ message: 'Adoção criada com sucesso!', id: id });
         } catch (error) {
             return res.status(400).json({ message: error.message });
         }

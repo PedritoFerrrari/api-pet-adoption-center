@@ -33,9 +33,13 @@ class petsService {
 
     static async deletePet(id) {
         const pet = await PetModel.findById(id);
-        if (!pet || pet.status !== 'available') {
+        if (!pet) {
+            throw new Error('Pet não encontrado!');
+        }
+        if (pet.status !== 'available') {
             throw new Error('Somente pets disponíveis podem ser removidos');
         }
+
         await PetModel.delete(id);
     }
 }
