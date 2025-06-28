@@ -1,6 +1,4 @@
 @baseURL = http://localhost:3000
-@jwtToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJqb2FvMTJAZW1haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzUwODAyMTY5LCJleHAiOjE3NTA4MDU3Njl9.N-Z1ibZr7kSn4Oj8CBuuFQUtL7Mku6YRRWvg_-M8DI0"
-
 ##Rotas Públicas##
 
 ### Cadastro de novo usuário
@@ -51,7 +49,8 @@ Content-Type: application/json
 }
 
 ### Deletar usuário por ID
-DELETE {{baseURL}}/protected/users/17
+DELETE {{baseURL}}/protected/users/1
+Authorization: Bearer {{jwtToken}}
 
 ### Buscar pet por ID
 GET {{baseURL}}/protected/pets/1

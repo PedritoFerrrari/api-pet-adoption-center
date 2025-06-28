@@ -34,6 +34,10 @@ class PetModel {
         );
     }
 
+    static async updatePetStatus(id, status) {
+        await db.query(`UPDATE pets SET status = ? WHERE id = ?`, [status, id]);
+    }
+
     static async delete(id) {
         await db.query('DELETE FROM pets WHERE id = ?', [id]);
     }

@@ -11,7 +11,7 @@ class AdoptionService {
         const pet = await PetModel.findById(pet_id);
         if (!pet || pet.status !== 'available')
             throw new Error('Pet não disponível');
-        await PetModel.update(pet_id, { status: 'adopted' });
+        await PetModel.updatePetStatus(pet_id, 'adopted');
         return await AdoptionModel.create(data);
     }
 }
